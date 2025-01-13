@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time until Tomm's cat arrives</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #686868;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .timer {
+            font-size: 48px;
+            font-weight: bolder;
+        }
+        .side-images {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .left-image {
+            left: -120px;
+        }
+        .right-image {
+            right: -120px;
+        }
+        img {
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-image left-image">
+        <img src="C:\Users\Tomi\Downloads\viber_image_2025-01-13_18-38-21-529.png" alt="Cat on the left">
+    </div>
+    <div class="container">
+        <div class="title">Time until Tomm's cat arrives</div>
+        <div class="timer" id="timer">Loading...</div>
+    </div>
+    <div class="side-image right-image">
+        <img src="C:\Users\Tomi\Downloads\viber_image_2025-01-13_18-38-21-529.png" alt="Cat on the right">
+    </div>
+
+    <script>
+        function updateTimer() {
+            const countdownDate = new Date();
+            countdownDate.setHours(16, 30, 0, 0);
+            countdownDate.setDate(countdownDate.getDate() + ((3 - countdownDate.getDay() + 7) % 7)); // Next Wednesday
+
+            const now = new Date();
+            const timeLeft = countdownDate - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById("timer").textContent = "Now he has a cat!";
+                clearInterval(interval);
+            } else {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        const interval = setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
