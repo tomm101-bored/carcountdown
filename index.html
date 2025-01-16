@@ -23,7 +23,7 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
-        .timer {
+        .message {
             font-size: 48px;
             font-weight: bolder;
         }
@@ -49,36 +49,10 @@
     </div>
     <div class="container">
         <div class="title">Time until Tomm's cat arrives</div>
-        <div class="timer" id="timer">Loading...</div>
+        <div class="message">Now he has a cat!</div>
     </div>
     <div class="side-image right-image">
         <img src="images/viber_image_2025-01-13_18-38-21-529.png" alt="Cat on the right">
     </div>
-
-    <script>
-        function updateTimer() {
-            const countdownDate = new Date();
-            countdownDate.setHours(16, 30, 0, 0);
-            countdownDate.setDate(countdownDate.getDate() + ((3 - countdownDate.getDay() + 7) % 7)); // Next Wednesday
-
-            const now = new Date();
-            const timeLeft = countdownDate - now;
-
-            if (timeLeft <= 0) {
-                document.getElementById("timer").textContent = "Now he has a cat!";
-                clearInterval(interval);
-            } else {
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                document.getElementById("timer").textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            }
-        }
-
-        const interval = setInterval(updateTimer, 1000);
-        updateTimer();
-    </script>
 </body>
 </html>
